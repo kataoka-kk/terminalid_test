@@ -40,7 +40,6 @@ class _MyHomePageState extends State<MyHomePage> {
       //Android端末
       var androidInfo = await deviceInfo.androidInfo;
       _setTerminalId(androidInfo.androidId);
-      print(androidInfo.androidId);
     } else if (Platform.isIOS) {
       //iOS端末
       var iosDeviceInfo = await deviceInfo.iosInfo;
