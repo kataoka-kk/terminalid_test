@@ -33,16 +33,16 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String _id = "";
 
-  void _getTerminalId() {
+  void _getTerminalId() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
     if (Platform.isAndroid) {
       //Android端末
-      var androidInfo = deviceInfo.androidInfo as AndroidDeviceInfo;
+      var androidInfo = await deviceInfo.androidInfo;
       _setTerminalId(androidInfo.androidId);
     } else if (Platform.isIOS) {
       //iOS端末
-      var iosDeviceInfo = deviceInfo.iosInfo as IosDeviceInfo;
+      var iosDeviceInfo = await deviceInfo.iosInfo;
       _setTerminalId(iosDeviceInfo.identifierForVendor);
     } else {
       //その他...
@@ -51,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _setTerminalId(String terminalId) {
+    print(terminalId);
     setState(() {
       //_idに入れ込む
       _id = terminalId;
